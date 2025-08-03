@@ -1,23 +1,35 @@
+def sort_on(items):
+    return items['count']
 
-
-
+def return_sorted_dict(dict):
+    return_list = []
+    i = 0
+    for key, value in dict.items():
+        return_list.append({'char': key, 'count': value})
+    return return_list
 
 def prettify_results(chars, word_count, filepath):
+    dicto = return_sorted_dict(chars)
     print("============ BOOKBOT ============\n")
     print(f"Analyzing book found at {filepath}\n")
     print("----------- Word Count ----------\n")
     print(f"found {word_count} total words.\n")
     print("--------- Character Count -------\n")
-    chars = sorted(chars.items(),  reverse=True)
-    for char in chars:
-        print(f"{char}: {chars.count[char]}") 
-
-def count_characters(filepath):
-    char_dict = {}
-    book = get_book_text(filepath).lower()
-    for char in book:
-        char_dict[char] = char_dict.get(char, 0) + 1
-    return char_dict
+    dicto.sort(reverse=True, key=sort_on)
+    for item in dicto:
+        for item2 in item.keys():
+            print(type(item2))
+            
+                
+def count_characters(text):
+    chars = {}
+    for c in text:
+        lowered = c.lower()
+        if lowered in chars:
+            chars[lowered] += 1
+        else:
+            chars[lowered] = 1
+    return chars
 
 
 def get_word_count(filepath):
