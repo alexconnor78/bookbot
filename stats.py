@@ -10,15 +10,17 @@ def return_sorted_dict(dict):
 
 def prettify_results(chars, word_count, filepath):
     dicto = return_sorted_dict(chars)
-    print("============ BOOKBOT ============\n")
-    print(f"Analyzing book found at {filepath}\n")
-    print("----------- Word Count ----------\n")
-    print(f"found {word_count} total words.\n")
-    print("--------- Character Count -------\n")
+    print("============ BOOKBOT ============")
+    print(f"Analyzing book found at {filepath}")
+    print("----------- Word Count ----------")
+    print(f"Found {word_count} total words")
+    print("--------- Character Count -------")
     dicto.sort(reverse=True, key=sort_on)
     for item in dicto:
-        for item2 in item.keys():
-            print(type(item2))
+        if item['char'].isalpha():
+            print(f"{item['char']}: {item['count']}")
+    print("============= END ===============")
+
             
                 
 def count_characters(text):
